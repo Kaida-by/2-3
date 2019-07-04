@@ -8,11 +8,17 @@ abstract class Model
 
     protected $id;
 
+    /**
+     * @return int Возвращает защищенное свойство id
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return array Возвращяет все записи
+     */
     public static function findAll()
     {
         $db = Db::getInstance();
@@ -20,6 +26,10 @@ abstract class Model
         return $db->query($sql, [], static::class);
     }
 
+    /**
+     * @param int $id
+     * @return bool|array Возвращает либо false, либо определенную запись
+     */
     public static function findById($id)
     {
         $db = Db::getInstance();
@@ -57,7 +67,7 @@ abstract class Model
         foreach ($fields as $name => $value) {
             if ('id' == $name) {
                 continue;
-            }
+        }
             $cols[] = $name;
             $data[':' . $name] = $value;
         }

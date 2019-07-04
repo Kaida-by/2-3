@@ -1,3 +1,6 @@
+<?php
+/** @var \App\View $this */
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -9,15 +12,15 @@
 </head>
 <body>
 <?php
-if ($article !== false) {
+if ($this->article !== false) {
     ?>
     <form action="editArticle.php?id=<?php echo $_GET['id'] ?>" method="POST">
         Название:
-        <p><input name="title" type="text" value="<?php echo $article->title; ?>"></p>
+        <p><input name="title" type="text" value="<?php echo $this->article->title; ?>"></p>
         Содержание:
         <p><textarea name="content" cols="25" rows="6">
         <?php
-        echo $article->content;
+        echo $this->article->content;
         ?>
         </textarea></p>
         <p><button type="submit" name="submit">Редактировать</button></p>
