@@ -1,3 +1,6 @@
+<?php
+/** @var \App\View $this */
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -9,11 +12,11 @@
 </head>
 <body>
 <?php
-if ($article !== false) {
+if ($this->article !== false) {
     ?>
     <form action="deleteArticle.php?id=<?php echo $_GET['id'] ?>" method="POST">
-        <h3><?php echo $article->title ?></h3>
-        <p><?php echo $article->content ?></p>
+        <h3><?php echo $this->article->title ?></h3>
+        <p><?php echo $this->article->content ?></p>
         <p><button type="submit" name="submit">Удалить</button></p>
     </form>
     <?php

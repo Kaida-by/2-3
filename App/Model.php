@@ -65,7 +65,7 @@ abstract class Model
         $data = [];
 
         foreach ($fields as $name => $value) {
-            if ('id' == $name) {
+            if ('id' == $name || 'data' == $name) {
                 continue;
         }
             $cols[] = $name;
@@ -88,7 +88,7 @@ abstract class Model
         $data = [];
 
         foreach ($fields as $name => $value) {
-            if ('id' == $name) {
+            if ('id' == $name || 'data' == $name) {
                 continue;
             }
             $cols[$name . '=:' . $name] = $value;

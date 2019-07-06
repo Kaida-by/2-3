@@ -2,13 +2,15 @@
 
 require_once __DIR__ . '/autoload.php';
 
-$article = new App\Models\Article();
+$view = new App\View();
+
+$view->article = new App\Models\Article();
 
 if (isset($_POST['title']) && isset($_POST['content'])) {
-    $article->title = $_POST['title'];
-    $article->content = $_POST['content'];
-    $article->save();
+    $view->article->title = $_POST['title'];
+    $view->article->content = $_POST['content'];
+    $view->article->save();
     header('Location: index.php');
+} else {
+    $view->display(__DIR__ . '/template/addArticle.php');
 }
-
-include __DIR__ . '/template/addArticle.php';

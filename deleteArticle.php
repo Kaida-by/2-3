@@ -2,10 +2,13 @@
 
 require_once __DIR__ . '/autoload.php';
 
-$article = \App\Models\Article::findById($_GET['id']);
+$view = new App\View();
+
+$view->article = \App\Models\Article::findById($_GET['id']);
 
 if (isset($_POST['submit'])) {
-    $article->delete();
+    $view->article->delete();
     header('Location: index.php');
+} else {
+    $view->display(__DIR__ . '/template/deleteArticle.php');
 }
-include __DIR__ . '/template/deleteArticle.php';
