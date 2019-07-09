@@ -8,6 +8,8 @@ use App\MagicTrait;
 
 /**
  * @method Article findById($id)
+ *
+ * @property string $author
  */
 class Article extends Model
 {
@@ -20,8 +22,6 @@ class Article extends Model
     public $content;
 
     public $author_id;
-
-    protected $data;
 
     public function __get($name)
     {

@@ -18,10 +18,10 @@
 foreach ($this->articles as $article) :
     echo '<h3>' . $article->title . '</h3>';
     echo $article->content;
-    $authors = $article->author;
+    $author = $article->author;
     echo '<br>';
-    if ($authors) {
-        echo 'Автор: ' . $authors->name;
+    if ($author) {
+        echo 'Автор: ' . $author->name;
     }else{
         echo 'Неизвестный автор';
     }
