@@ -9,7 +9,7 @@ use App\MagicTrait;
 /**
  * @method Article findById($id)
  *
- * @property string $author
+ * @property Author $author
  */
 class Article extends Model
 {
