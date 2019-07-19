@@ -1,11 +1,14 @@
 <?php
 
-require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/App/autoload.php';
 
-$view = new App\View();
+$ctrl = $_GET['ctrl'] ?? 'Index';
 
-$view->aaa = ['one', 'two', 'three'];
+$class = '\App\Controllers\\' . $ctrl;
 
-$view->articles = \App\Models\Article::findAll();
-
-$view->display(__DIR__ . '/template/index.php');
+if (isset($_GET['ctrl']) && isset($_GET['action'])) {
+    $ctrl = new $class;
+    $ctrl->action($_GET['action']);
+} else {
+    echo 'Введите гет параметры';
+}

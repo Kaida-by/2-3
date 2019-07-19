@@ -18,7 +18,7 @@ class Config
 
     protected function __construct()
     {
-        $this->data = include __DIR__ . '/../config.php';
+        $this->data = include __DIR__ . '/config2.php';
     }
 
     protected function __clone()

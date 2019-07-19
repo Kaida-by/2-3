@@ -14,7 +14,7 @@
 <?php
 if ($this->article !== false) {
     ?>
-    <form action="editArticle.php?id=<?php echo $_GET['id'] ?>" method="POST">
+    <form action="?ctrl=AdminPanel&action=editArticle&id=<?php echo $_GET['id'] ?>" method="POST">
         Название:
         <p><input name="title" type="text" value="<?php echo $this->article->title; ?>"></p>
         Содержание:

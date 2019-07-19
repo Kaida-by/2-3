@@ -8,27 +8,34 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin</title>
+    <title>Index</title>
 </head>
 <body>
-<a href ="addArticle.php">Добавить новость</a>
-<hr>
-
+<?php
+    if (!isset($_SESSION['user'])) { ?>
+<p>Войти как админ:</p><form action="?ctrl=Login&action=login" method="POST">
+    Логин: <input type="text" name="login">
+    Пароль: <input type="password" name="password">
+    <input type="submit" name="submit">
+</form>
+<?php
+    } else {
+        echo '<a href ="index.php?ctrl=AdminPanel&action=showAllNews">Обратно в админку</a>';
+    }
+?>
+<h1>Новости</h1>
 <?php
 foreach ($this->articles as $article) :
     echo '<h3>' . $article->title . '</h3>';
     echo $article->content;
-    $author = $article->author;
     echo '<br>';
+    $author = $article->author;
     if ($author) {
         echo 'Автор: ' . $author->name;
-    }else{
+    } else {
         echo 'Неизвестный автор';
     }
     echo '<br>';
-    echo '<a href ="deleteArticle.php?id=' . $article->getId() . '">Удалить новость</a>';
-    echo '<br>';
-    echo '<a href ="editArticle.php?id=' . $article->getId() . '">Редактировать новость</a>';
     echo '<hr>';
 endforeach;
 ?>

@@ -14,7 +14,7 @@
 <?php
 if ($this->article !== false) {
     ?>
-    <form action="deleteArticle.php?id=<?php echo $_GET['id'] ?>" method="POST">
+    <form action="?ctrl=AdminPanel&action=deleteArticle&id=<?php echo $_GET['id'] ?>" method="POST">
         <h3><?php echo $this->article->title ?></h3>
         <p><?php echo $this->article->content ?></p>
         <p><button type="submit" name="submit">Удалить</button></p>

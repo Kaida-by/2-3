@@ -8,8 +8,8 @@
     <title>AddArticle</title>
 </head>
 <body>
-
-<form action="addArticle.php" method="POST">
+<h3>Добавить новость</h3>
+<form action="?ctrl=AdminPanel&action=addArticle" method="POST">
     Название:
     <p><input type="text" name="title"></p>
     Содержание:
