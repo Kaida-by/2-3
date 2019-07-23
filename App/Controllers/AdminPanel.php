@@ -56,19 +56,4 @@ class AdminPanel extends Admin
             $this->view->display(__DIR__ . '/../../template/addArticle.php');
         }
     }
-
-    protected function handle($action)
-    {
-        if ($action == 'addArticle') {
-            $this->addArticle();
-        } elseif ($action == 'deleteArticle') {
-            $this->deleteArticle();
-        } elseif ($action == 'editArticle') {
-            $this->editArticle();
-        } elseif ($action == 'showAllNews') {
-            $this->showAllNews();
-        } else {
-            echo 'Неверный экшн';
-        }
-    }
 }

@@ -17,15 +17,4 @@ class ArticleController extends Guest
         $this->view->article = Article::findById($_GET['id']);
         $this->view->display(__DIR__ . '/../../template/article.php');
     }
-
-    protected function handle($action)
-    {
-        if ($action == 'showOneArticle') {
-            $this->showOneArticle();
-        } elseif ($action == 'showAllNews') {
-            $this->showAllNews();
-        } else {
-            echo 'Введите экшн';
-        }
-    }
 }

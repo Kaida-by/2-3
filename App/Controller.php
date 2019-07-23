@@ -14,13 +14,11 @@ abstract class Controller
     public function action($action)
     {
         if ($this->access()) {
-            return $this->handle($action);
-        } elseif (isset($_SESSION['user'])) {
-            return $this->handle($action);
+            return $this->$action();
         } else {
             die('Доступ закрыт');
         }
     }
 
-    abstract protected function handle($action);
+    abstract protected function access();
 }

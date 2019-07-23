@@ -15,26 +15,12 @@ class Login extends Guest
                 $_POST['login'] == $value->name &&
                 password_verify($_POST['password'], $value->password)) {
                 $_SESSION['user'] = $_POST['login'];
-                return true;
             }
         }
         if (isset($_SESSION['user'])) {
-            return true;
+            echo 'Вы вошли';
         } else {
-            return false;
-        }
-    }
-
-    protected function handle($action)
-    {
-        if ($action == 'login') {
-            if ($this->login()) {
-                header('Location: index.php?ctrl=AdminPanel&action=showAllNews');
-            } else {
-                die('Неверный логин или пароль!');
-            }
-        } else {
-            die('ERROR!');
+            echo 'Неверный логин или пароль';
         }
     }
 }
