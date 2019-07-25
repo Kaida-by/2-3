@@ -11,18 +11,6 @@
     <title>Index</title>
 </head>
 <body>
-<?php
-    if (!isset($_SESSION['user'])) { ?>
-<p>Войти как админ:</p><form action="?ctrl=Login&action=login" method="POST">
-    Логин: <input type="text" name="login">
-    Пароль: <input type="password" name="password">
-    <input type="submit" name="submit">
-</form>
-<?php
-    } else {
-        echo '<a href ="index.php?ctrl=AdminPanel&action=showAllNews">Обратно в админку</a>';
-    }
-?>
 <h1>Новости</h1>
 <?php
 foreach ($this->articles as $article) :

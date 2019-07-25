@@ -8,19 +8,25 @@ class Login extends Guest
 {
     protected function login()
     {
-        $user = User::findAll();
-        foreach ($user as $value) {
-            if (!empty($_POST['login']) &&
-                !empty($_POST['password']) &&
-                $_POST['login'] == $value->name &&
-                password_verify($_POST['password'], $value->password)) {
-                $_SESSION['user'] = $_POST['login'];
+        if (isset($_POST['login'])) {
+            $user = User::findByLogin($_POST['login']);
+            if ($user) {
+                if (!empty($_POST['login']) &&
+                    !empty($_POST['password']) &&
+                    $_POST['login'] == $user->name &&
+                    password_verify($_POST['password'], $user->password)) {
+                    $_SESSION['user'] = $_POST['login'];
+                } else {
+                    echo 'Неверный логин или пароль';
+                }
+            } else {
+                echo 'Такого имени не существует';
             }
         }
-        if (isset($_SESSION['user'])) {
-            echo 'Вы вошли';
+        if (isset($_SESSION['user'])){
+            header('Location: index.php?ctrl=AdminPanel&action=showAllNews');
         } else {
-            echo 'Неверный логин или пароль';
+            $this->view->display(__DIR__ . '/../../template/login.php');
         }
     }
 }
