@@ -17,10 +17,10 @@ class Login extends Guest
                     password_verify($_POST['password'], $user->password)) {
                     $_SESSION['user'] = $_POST['login'];
                 } else {
-                    echo 'Неверный логин или пароль';
+                    $this->view->result = 'Неверный логин или пароль';
                 }
             } else {
-                echo 'Такого имени не существует';
+                $this->view->result = 'Такого имени не существует';
             }
         }
         if (isset($_SESSION['user'])){

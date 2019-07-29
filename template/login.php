@@ -14,5 +14,8 @@
         Пароль: <input type="password" name="password">
         <input type="submit" name="submit">
     </form>
+    <?php
+    echo $this->result;
+    ?>
 </body>
 </html>
