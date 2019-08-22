@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exceptions\DbException;
+
 class Db
 {
     protected $dbh;
@@ -16,10 +18,20 @@ class Db
         return self::$instance;
     }
 
+    /**
+     * @param $sql
+     * @param array $data
+     * @param string $class
+     * @return array
+     * @throws DbException
+     */
     public function query($sql, $data = [], $class = \stdClass::class)
     {
         $sth = $this->dbh->prepare($sql);
-        $sth->execute($data);
+        $result = $sth->execute($data);
+        if (!$result) {
+            throw new DbException('Неверный запрос к БД');
+        }
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
@@ -34,14 +46,22 @@ class Db
         return $this->dbh->lastInsertId();
     }
 
+    /**
+     * Db constructor.
+     * @throws DbException
+     */
     protected function __construct()
     {
         $config = Config::getInstance();
-        $this->dbh = new \PDO(
-            'mysql:=' . $config->data['db']['host'] . ';dbname=' . $config->data['db']['dbname'],
-            $config->data['db']['user'],
-            $config->data['db']['password']
-        );
+        try {
+            $this->dbh = new \PDO(
+                'mysql:=' . $config->data['db']['host'] . ';dbname=' . $config->data['db']['dbname'],
+                $config->data['db']['user'],
+                $config->data['db']['password']
+            );
+        } catch (\PDOException $error) {
+            throw new DbException('Нет соединения с БД');
+        }
     }
 
     protected function __clone()

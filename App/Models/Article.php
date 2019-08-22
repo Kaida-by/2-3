@@ -23,6 +23,12 @@ class Article extends Model
 
     public $author_id;
 
+    protected $schema = [
+        'title' => ['type' => 'string', 'minLength' => 5, 'maxLength' => 50],
+        'content' => ['type' => 'string', 'minLength' => 5, 'maxLength' => 200],
+        'author_id' => ['type' => 'integer']
+    ];
+
     public function __get($name)
     {
         if ($name == 'author') {

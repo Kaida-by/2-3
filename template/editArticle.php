@@ -11,9 +11,6 @@
     <title>EditArticle</title>
 </head>
 <body>
-<?php
-if ($this->article !== false) {
-    ?>
     <form action="?ctrl=AdminPanel&action=editArticle&id=<?php echo $_GET['id'] ?>" method="POST">
         Название:
         <p><input name="title" type="text" value="<?php echo $this->article->title; ?>"></p>
@@ -25,10 +22,5 @@ if ($this->article !== false) {
         </textarea></p>
         <p><button type="submit" name="submit">Редактировать</button></p>
     </form>
-    <?php
-} else {
-    echo 'Извините, статья не найдена.';
-}
-?>
 </body>
 </html>

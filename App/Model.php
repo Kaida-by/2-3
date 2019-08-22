@@ -2,11 +2,47 @@
 
 namespace App;
 
+use App\Exceptions\Errors;
+
 abstract class Model
 {
     public const TABLE = '';
 
     protected $id;
+
+    protected $schema = [];
+
+    /**
+     * @param array $data
+     * @throws Errors
+     */
+    public function fill(array $data)
+    {
+        foreach ($data as $key=>$value) {
+            if (property_exists($this, $key) && $key !== 'id') {
+                $errors = new Errors;
+                if ($this->schema[$key]['type'] === 'string' && !is_string($value)) {
+                    $errors->add(new \Exception('Задан неверный тип в свойстве: ' . $key));
+                }
+                if (isset($this->schema[$key]['minLength']) && strlen($value) < $this->schema[$key]['minLength']) {
+                    $errors->add(new \Exception('Минимальное кол-во символов: ' .
+                        $this->schema[$key]['minLength'] . ' в свойстве: ' . $key));
+                }
+                if (isset($this->schema[$key]['maxLength']) && strlen($value) >= $this->schema[$key]['maxLength']) {
+                    $errors->add(new \Exception('Превышено максимально кол-во символов:' .
+                        $this->schema[$key]['maxLength'] . ' в свойстве: ' . $key));
+                }
+                if ($this->schema[$key]['type'] === 'integer' && !is_int($value)) {
+                    $errors->add(new \Exception('Задан неверный тип в свойстве: ' . $key));
+                }
+                if (!$errors->empty()) {
+                    throw $errors;
+                } else {
+                    $this->{$key} = $value;
+                }
+            }
+        }
+    }
 
     /**
      * @return int Возвращает защищенное свойство id
@@ -17,7 +53,8 @@ abstract class Model
     }
 
     /**
-     * @return array Возвращяет все записи
+     * @return array
+     * @throws Exceptions\DbException
      */
     public static function findAll()
     {
@@ -42,6 +79,7 @@ abstract class Model
         }
     }
 
+
     public function delete()
     {
         $sql = 'DELETE FROM ' . static::TABLE . ' WHERE :id=id';
@@ -65,13 +103,12 @@ abstract class Model
         $data = [];
 
         foreach ($fields as $name => $value) {
-            if ('id' == $name || 'data' == $name) {
+            if ('id' == $name || 'data' == $name || 'schema' == $name) {
                 continue;
         }
             $cols[] = $name;
             $data[':' . $name] = $value;
         }
-
         $sql = 'INSERT INTO ' . static::TABLE . '
             (' . implode(',', $cols) . ') 
         VALUES 
@@ -88,7 +125,7 @@ abstract class Model
         $data = [];
 
         foreach ($fields as $name => $value) {
-            if ('id' == $name || 'data' == $name) {
+            if ('id' == $name || 'data' == $name || 'schema' == $name) {
                 continue;
             }
             $cols[$name . '=:' . $name] = $value;

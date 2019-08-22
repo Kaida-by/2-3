@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Exceptions\DbException;
 use \App\Models\Article;
 
 class ArticleController extends Guest
@@ -12,9 +13,16 @@ class ArticleController extends Guest
         $this->view->display(__DIR__ . '/../../template/index.php');
     }
 
+    /**
+     * @throws DbException
+     */
     protected function showOneArticle()
     {
-        $this->view->article = Article::findById($_GET['id']);
-        $this->view->display(__DIR__ . '/../../template/article.php');
+        if (false !== Article::findById($_GET['id'])) {
+            $this->view->article = Article::findById($_GET['id']);
+            $this->view->display(__DIR__ . '/../../template/article.php');
+        } else {
+            throw new DbException('Ошибка 404 - не найдено');
+        }
     }
 }
