@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Exceptions\DbException;
+use App\Exceptions\E404Exception;
 use App\Models\Article;
 
 class AdminPanel extends Admin
@@ -19,12 +20,12 @@ class AdminPanel extends Admin
     }
 
     /**
-     * @throws DbException
+     * @throws E404Exception
      */
     protected function editArticle()
     {
         $this->view->article = Article::findById($_GET['id']);
-        if (false !== Article::findById($_GET['id'])) {
+        if (false !== $this->view->article) {
             if (isset($_POST['submit']) && isset($_POST['title']) && isset($_POST['content'])) {
                 $this->view->article->fill(['title' => $_POST['title'], 'content'=>$_POST['content']]);
                 $this->view->article->save();
@@ -33,17 +34,17 @@ class AdminPanel extends Admin
                 $this->view->display(__DIR__ . '/../../template/editArticle.php');
             }
         } else {
-            throw new DbException('Ошибка 404 - не найдено');
+            throw new E404Exception('Ошибка 404 - не найдено');
         }
     }
 
     /**
-     * @throws DbException
+     * @throws E404Exception
      */
     protected function deleteArticle()
     {
         $this->view->article = Article::findById($_GET['id']);
-        if (false !== Article::findById($_GET['id'])) {
+        if (false !== $this->view->article) {
             if (isset($_POST['submit'])) {
                 $this->view->article->delete();
                 header('Location: index.php?ctrl=AdminPanel&action=showAllNews');
@@ -51,7 +52,7 @@ class AdminPanel extends Admin
                 $this->view->display(__DIR__ . '/../../template/deleteArticle.php');
             }
         } else {
-            throw new DbException('Ошибка 404 - не найдено');
+            throw new E404Exception('Ошибка 404 - не найдено');
         }
     }
 

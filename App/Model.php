@@ -18,29 +18,36 @@ abstract class Model
      */
     public function fill(array $data)
     {
-        foreach ($data as $key=>$value) {
+        $errors = new Errors;
+        foreach ($data as $key => $value) {
             if (property_exists($this, $key) && $key !== 'id') {
-                $errors = new Errors;
                 if ($this->schema[$key]['type'] === 'string' && !is_string($value)) {
                     $errors->add(new \Exception('Задан неверный тип в свойстве: ' . $key));
                 }
                 if (isset($this->schema[$key]['minLength']) && strlen($value) < $this->schema[$key]['minLength']) {
-                    $errors->add(new \Exception('Минимальное кол-во символов: ' .
-                        $this->schema[$key]['minLength'] . ' в свойстве: ' . $key));
+                    $errors->add(
+                        new \Exception(
+                            'Минимальное кол-во символов: ' . $this->schema[$key]['minLength'] . ' в свойстве: ' . $key
+                        )
+                    );
                 }
                 if (isset($this->schema[$key]['maxLength']) && strlen($value) >= $this->schema[$key]['maxLength']) {
-                    $errors->add(new \Exception('Превышено максимально кол-во символов:' .
-                        $this->schema[$key]['maxLength'] . ' в свойстве: ' . $key));
+                    $errors->add(
+                        new \Exception(
+                            'Превышено максимально кол-во символов:' . $this->schema[$key]['maxLength'] . ' в свойстве: ' . $key
+                        )
+                    );
                 }
                 if ($this->schema[$key]['type'] === 'integer' && !is_int($value)) {
                     $errors->add(new \Exception('Задан неверный тип в свойстве: ' . $key));
                 }
-                if (!$errors->empty()) {
-                    throw $errors;
-                } else {
-                    $this->{$key} = $value;
-                }
             }
+            if ($errors->empty()) {
+                $this->{$key} = $value;
+            }
+        }
+        if (!$errors->empty()) {
+            throw $errors;
         }
     }
 
