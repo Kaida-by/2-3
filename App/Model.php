@@ -42,9 +42,7 @@ abstract class Model
                     $errors->add(new \Exception('Задан неверный тип в свойстве: ' . $key));
                 }
             }
-            if ($errors->empty()) {
                 $this->{$key} = $value;
-            }
         }
         if (!$errors->empty()) {
             throw $errors;
