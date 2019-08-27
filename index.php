@@ -24,7 +24,7 @@ try {
     }
 } catch (DbException $error) {
     $log = new Logger();
-    $log->setLog('Ошибка в БД:  ' . $error->getMessage());
+    $log->setLog('Ошибка в БД:  ' . $error->getMessage(), $error->getFile(), $error->getLine());
     $view = new View();
     $view->display(__DIR__ . '/template/error.php');
 } catch (Errors $errors) {
@@ -33,7 +33,8 @@ try {
     $view->display(__DIR__ . '/template/errors.php');
 } catch (E404Exception $error) {
     $log = new Logger();
-    $log->setLog($error->getMessage());
+    $log->setLog($error->getMessage(), $error->getFile(), $error->getLine());
     $view = new View();
-    $view->display(__DIR__ . '/template/error.php');
+    $view->error = $error->getMessage();
+    $view->display(__DIR__ . '/template/error404.php');
 }
