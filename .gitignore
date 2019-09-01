@@ -2,3 +2,4 @@
 .docker/
 .env
 /log/errors.txt
+vendor/
