@@ -1,36 +1,24 @@
-﻿2019-09-01 18:01:57
-[notice]
-Ошибка 404 - не найдено
-В файле: D:\Programs\OSPanel\domains\php.local\13\App\Controllers\AdminPanel.php
-На строке: 55
-================================================================
-2019-09-01 18:03:35
+﻿2019-09-02 16:51:01
 [critical]
-Ошибка в БД:  Неверный запрос к БД
-В файле: D:\Programs\OSPanel\domains\php.local\13\App\Db.php
-На строке: 33
+Ошибка в БД:  Ошибка 404 - не найдено
+В файле: D:\Programs\OSPanel\domains\php.local\13\App\Controllers\ArticleController.php
+На строке: 25
 ================================================================
-2019-09-01 18:03:56
+2019-09-02 17:05:20
+[critical]
+Ошибка в БД:  Ошибка 404 - не найдено
+В файле: D:\Programs\OSPanel\domains\php.local\13\App\Controllers\ArticleController.php
+На строке: 25
+================================================================
+2019-09-02 17:05:45
 [critical]
 Ошибка в БД:  Нет соединения с БД
 В файле: D:\Programs\OSPanel\domains\php.local\13\App\Db.php
 На строке: 63
 ================================================================
-2019-09-01 18:04:18
+2019-09-02 17:06:18
 [notice]
 Ошибка 404 - не найдено
 В файле: D:\Programs\OSPanel\domains\php.local\13\App\Controllers\AdminPanel.php
 На строке: 55
-================================================================
-2019-09-01 18:04:28
-[notice]
-Ошибка 404 - не найдено
-В файле: D:\Programs\OSPanel\domains\php.local\13\App\Controllers\AdminPanel.php
-На строке: 37
-================================================================
-2019-09-01 18:05:08
-[notice]
-Ошибка 404 - не найдено
-В файле: D:\Programs\OSPanel\domains\php.local\13\App\Controllers\AdminPanel.php
-На строке: 37
 ================================================================

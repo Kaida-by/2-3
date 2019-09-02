@@ -2,21 +2,11 @@
 
 namespace App;
 
-use Psr\Log\AbstractLogger;
+use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
-class Logger  extends AbstractLogger
+class Logger implements LoggerInterface
 {
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
-     *
-     * @return void
-     */
-
     /**
      * System is unusable.
      *
