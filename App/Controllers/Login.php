@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class Login extends Guest
 {
@@ -26,7 +28,9 @@ class Login extends Guest
         if (isset($_SESSION['user'])){
             header('Location: index.php?ctrl=AdminPanel&action=showAllNews');
         } else {
-            $this->view->display(__DIR__ . '/../../template/login.php');
+            $loader = new FilesystemLoader(__DIR__ . '/../../template');
+            $twig = new Environment($loader);
+            echo $twig->render('login.php', ['result' => $this->view->result]);
         }
     }
 }

@@ -12,7 +12,7 @@
 </head>
 <body>
 <p>Страница одной новости!</p>
-<h3><?php echo $this->article->title ?></h3>
-<p><?php echo $this->article->content ?></p>
+<h3>{{ article.title }}</h3>
+<p>{{ article.content }}</p>
 </body>
 </html>

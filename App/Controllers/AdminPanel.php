@@ -5,6 +5,9 @@ namespace App\Controllers;
 use App\Exceptions\DbException;
 use App\Exceptions\E404Exception;
 use App\Models\Article;
+use SebastianBergmann\Timer\Timer;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class AdminPanel extends Admin
 {
@@ -15,8 +18,11 @@ class AdminPanel extends Admin
 
     protected function showAllNews()
     {
-        $this->view->articles = Article::findAll();
-        $this->view->display(__DIR__ . '/../../template/index.php');
+        Timer::start();
+        $loader = new FilesystemLoader(__DIR__ . '/../../template');
+        $twig = new Environment($loader);
+        Timer::stop();
+        echo $twig->render('index.php', ['articles' => Article::findAll(), 'time' => Timer::resourceUsage()]);
     }
 
     /**
