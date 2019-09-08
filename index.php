@@ -5,10 +5,13 @@ use App\Exceptions\DbException;
 use App\Exceptions\E404Exception;
 use App\View;
 use App\Logger;
+use SebastianBergmann\Timer\Timer;
 
 require_once __DIR__ . '/autoload.php';
 
 session_start();
+
+Timer::start();
 
 $ctrlName = $_GET['ctrl'] ?? 'ArticleController';
 $action = $_GET['action'] ?? 'showAllNews';
@@ -49,3 +52,6 @@ try {
     $view->error = $error->getMessage();
     $view->display(__DIR__ . '/template/error404.php');
 }
+Timer::stop();
+echo '<br>';
+echo Timer::resourceUsage();
