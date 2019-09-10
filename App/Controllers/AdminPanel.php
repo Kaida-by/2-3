@@ -4,11 +4,11 @@ namespace App\Controllers;
 
 use App\Exceptions\E404Exception;
 use App\Models\Article;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 class AdminPanel extends Admin
 {
+    protected $viewEngine = 'php';
+
     protected function access()
     {
         return !empty($_SESSION['user']);
@@ -16,10 +16,8 @@ class AdminPanel extends Admin
 
     protected function showAllNews()
     {
-
-        $loader = new FilesystemLoader(__DIR__ . '/../../template');
-        $twig = new Environment($loader);
-        echo $twig->render('index.php', ['articles' => Article::findAll()]);
+        $this->view->articles = Article::findAll();
+        $this->view->display(__DIR__ . '/../../template/index.php');
     }
 
     /**

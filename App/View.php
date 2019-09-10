@@ -2,7 +2,9 @@
 
 namespace App;
 
-class View implements \Countable, \Iterator
+use App\Models\ViewInterface;
+
+class View implements \Countable, \Iterator, ViewInterface
 {
     use MagicTrait;
 

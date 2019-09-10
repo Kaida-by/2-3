@@ -26,7 +26,7 @@ try {
         throw new E404Exception('Ошибка 404 - не найдено');
     }
 } catch (DbException $error) {
-    $transport = (new Swift_SmtpTransport('smtp.hostname', 25))
+    /*$transport = (new Swift_SmtpTransport('smtp.hostname', 25))
         ->setUsername('***')
         ->setPassword('***');
     $mailer = new Swift_Mailer($transport);
@@ -35,7 +35,7 @@ try {
     $message->setFrom(['1234@mail.ru' => 'Denis Stolyarov']);
     $message->addTo('4321@mail.ru','333');
     $message->setBody("This is the plain text body of the message.\nThanks,\nAdmin");
-    $result = $mailer->send($message);
+    $result = $mailer->send($message);*/
 
     $log = new Logger();
     $log->critical('Ошибка в БД:  ' . $error->getMessage(), [$error->getFile(), $error->getLine()]);

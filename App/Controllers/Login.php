@@ -3,11 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\User;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 class Login extends Guest
 {
+    protected $viewEngine = 'twig';
+
     protected function login()
     {
         if (isset($_POST['login'])) {
@@ -28,9 +28,8 @@ class Login extends Guest
         if (isset($_SESSION['user'])){
             header('Location: index.php?ctrl=AdminPanel&action=showAllNews');
         } else {
-            $loader = new FilesystemLoader(__DIR__ . '/../../template');
-            $twig = new Environment($loader);
-            echo $twig->render('login.php', ['result' => $this->view->result]);
+            $this->view->results = $this->view->result;
+            $this->view->display('login.twig');
         }
     }
 }

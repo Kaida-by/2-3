@@ -6,9 +6,15 @@ abstract class Controller
 {
     protected $view;
 
+    protected  $viewEngine;
+
     public function __construct()
     {
-        $this->view = new View();
+        if ($this->viewEngine === 'php') {
+            $this->view = new View();
+        } elseif ($this->viewEngine === 'twig') {
+            $this->view = new ViewTwig();
+        }
     }
 
     public function action($action)

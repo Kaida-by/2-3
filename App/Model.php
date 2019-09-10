@@ -114,6 +114,7 @@ abstract class Model
             $cols[] = $name;
             $data[':' . $name] = $value;
         }
+
         $sql = 'INSERT INTO ' . static::TABLE . '
             (' . implode(',', $cols) . ') 
         VALUES 
