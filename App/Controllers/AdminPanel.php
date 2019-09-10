@@ -7,8 +7,6 @@ use App\Models\Article;
 
 class AdminPanel extends Admin
 {
-    protected $viewEngine = 'php';
-
     protected function access()
     {
         return !empty($_SESSION['user']);

@@ -110,7 +110,7 @@ abstract class Model
         foreach ($fields as $name => $value) {
             if ('id' == $name || 'data' == $name || 'schema' == $name) {
                 continue;
-        }
+            }
             $cols[] = $name;
             $data[':' . $name] = $value;
         }
