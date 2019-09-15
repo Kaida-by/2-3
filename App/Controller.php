@@ -3,8 +3,6 @@
 namespace App;
 
 use App\Exceptions\E404Exception;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 abstract class Controller
 {
@@ -14,8 +12,6 @@ abstract class Controller
 
     public function __construct()
     {
-        $loader = new FilesystemLoader(__DIR__ . '/../template');
-        $this->twig = new Environment($loader);
         if ($this->viewEngine === 'php') {
             $this->view = new View();
         } elseif ($this->viewEngine === 'twig') {

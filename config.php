@@ -6,5 +6,13 @@ return [
         'dbname' => 'php',
         'user' => 'root',
         'password' => ''
+    ],
+    'mailer' => [
+        'useFileTransport' => false,
+        'host' => 'smtp.gmail.com',
+        'username' => '***',
+        'password' => '***',
+        'port' => '465',
+        'encryption' => 'tls'
     ]
 ];

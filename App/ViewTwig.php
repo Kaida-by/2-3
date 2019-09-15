@@ -2,9 +2,20 @@
 
 namespace App;
 
-class ViewTwig extends Controller implements ViewInterface
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
+class ViewTwig implements ViewInterface
 {
     use MagicTrait;
+
+    protected $twig;
+
+    public function __construct()
+    {
+        $loader = new FilesystemLoader(__DIR__ . '/../template');
+        $this->twig = new Environment($loader);
+    }
 
     public function render($template)
     {
@@ -14,9 +25,5 @@ class ViewTwig extends Controller implements ViewInterface
     public function display($template)
     {
         echo $this->render($template);
-    }
-
-    protected function access()
-    {
     }
 }
