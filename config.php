@@ -13,6 +13,8 @@ return [
         'username' => '***',
         'password' => '***',
         'port' => '465',
-        'encryption' => 'tls'
+        'encryption' => 'tls',
+        'from' => 'Denis Stolyarov',
+        'to' => '333'
     ]
 ];

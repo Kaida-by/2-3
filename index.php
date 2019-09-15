@@ -29,7 +29,7 @@ try {
 } catch (DbException $error) {
     $log = new Logger();
     $log->critical('Ошибка в БД:  ' . $error->getMessage(), [$error->getFile(), $error->getLine()]);
-    $mail = new Mailer();
+    $mail = Mailer::getInstance();
     $mail->sendEmail(
         'Critical error!',
         'skstolyarov@mail.ru',
