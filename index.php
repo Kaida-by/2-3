@@ -30,7 +30,11 @@ try {
     $log = new Logger();
     $log->critical('Ошибка в БД:  ' . $error->getMessage(), [$error->getFile(), $error->getLine()]);
     $mail = new Mailer();
-    $mail->sendEmail();
+    $mail->sendEmail(
+        'Critical error!',
+        'skstolyarov@mail.ru',
+        'This is the plain text body of the message.'
+    );
     $view = new View();
     $view->display(__DIR__ . '/template/error.php');
 } catch (Errors $errors) {

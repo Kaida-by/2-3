@@ -8,19 +8,26 @@ use Swift_SmtpTransport;
 
 class Mailer
 {
-    public function sendEmail()
+    protected $config;
+
+    protected $mailer;
+
+    public function __construct()
     {
-        $config = Config::getInstance();
-        $config->data['mailer']['host'];
-        $transport = (new Swift_SmtpTransport($config->data['mailer']['host'], $config->data['mailer']['port']))
-            ->setUsername($config->data['mailer']['username'])
-            ->setPassword($config->data['mailer']['password']);
-        $mailer = new Swift_Mailer($transport);
+        $this->config = Config::getInstance();
+        $transport = (new Swift_SmtpTransport($this->config->data['mailer']['host'], $this->config->data['mailer']['port']))
+            ->setUsername($this->config->data['mailer']['username'])
+            ->setPassword($this->config->data['mailer']['password']);
+        $this->mailer = new Swift_Mailer($transport);
+    }
+
+    public function sendEmail($subject, $to, $body)
+    {
         $message = new Swift_Message();
-        $message->setSubject('Critical error!');
-        $message->setFrom([$config->data['mailer']['host'] => 'Denis Stolyarov']);
-        $message->addTo('skstolyarov@mail.ru','333');
-        $message->setBody("This is the plain text body of the message.\nThanks,\nAdmin");
-        $mailer->send($message);
+        $message->setSubject($subject);
+        $message->setFrom([$this->config->data['mailer']['host'] => 'Denis Stolyarov']);
+        $message->addTo($to,'333');
+        $message->setBody($body);
+        $this->mailer->send($message);
     }
 }
