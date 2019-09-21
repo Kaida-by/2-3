@@ -3,6 +3,7 @@
     "psr/log": "*",
     "phpunit/php-timer": "*",
     "twig/twig": "*",
-    "swiftmailer/swiftmailer": "*"
+    "swiftmailer/swiftmailer": "*",
+    "kaida/multi-exception": "dev-master"
   }
 }

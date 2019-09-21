@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Exceptions\Errors;
+use Kaida\MultiException\Errors;
 
 abstract class Model
 {
@@ -18,7 +18,7 @@ abstract class Model
      */
     public function fill(array $data)
     {
-        $errors = new Errors;
+        $errors = new Errors();
         foreach ($data as $key => $value) {
             if (property_exists($this, $key) && $key !== 'id') {
                 if ($this->schema[$key]['type'] === 'string' && !is_string($value)) {

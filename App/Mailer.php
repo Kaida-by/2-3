@@ -22,7 +22,7 @@ class Mailer
         return self::$instance;
     }
 
-    public function sendEmail($subject, $to, $body)
+    public function sendEmail(string $subject, string $to, string $body)
     {
         $message = new Swift_Message();
         $message->setSubject($subject);

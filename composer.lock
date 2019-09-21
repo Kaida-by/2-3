@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9dc17590e9eacf3948b3837a972ff4b5",
+    "content-hash": "2b3bf96ae08e607ebc9207e74aec0ed9",
     "packages": [
         {
             "name": "doctrine/lexer",
@@ -125,6 +125,39 @@
                 "validator"
             ],
             "time": "2019-08-13T17:33:27+00:00"
+        },
+        {
+            "name": "kaida/multi-exception",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kaida-by/multi-exception.git",
+                "reference": "1a7f7c6a9c533a8e237b425bf6dd6c7bc8d6961a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kaida-by/multi-exception/zipball/1a7f7c6a9c533a8e237b425bf6dd6c7bc8d6961a",
+                "reference": "1a7f7c6a9c533a8e237b425bf6dd6c7bc8d6961a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kaida\\MultiException\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Denis Stolyarov",
+                    "email": "Skstolyarov@mail.ru"
+                }
+            ],
+            "description": "Throws out a lot of exceptions",
+            "time": "2019-09-21T14:38:13+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -648,7 +681,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "kaida/multi-exception": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

@@ -1,12 +1,12 @@
 <?php
 
-use App\Exceptions\Errors;
+use Kaida\MultiException\Errors;
 use App\Exceptions\DbException;
 use App\Exceptions\E404Exception;
 use App\View;
 use App\Logger;
 use SebastianBergmann\Timer\Timer;
-use App\Mailer;
+//use App\Mailer;
 
 require_once __DIR__ . '/autoload.php';
 
@@ -29,12 +29,11 @@ try {
 } catch (DbException $error) {
     $log = new Logger();
     $log->critical('Ошибка в БД:  ' . $error->getMessage(), [$error->getFile(), $error->getLine()]);
-    $mail = Mailer::getInstance();
-    $mail->sendEmail(
+    /*Mailer::getInstance()->sendEmail(
         'Critical error!',
         'skstolyarov@mail.ru',
         'This is the plain text body of the message.'
-    );
+    );*/
     $view = new View();
     $view->display(__DIR__ . '/template/error.php');
 } catch (Errors $errors) {
