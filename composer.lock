@@ -132,12 +132,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Kaida-by/multi-exception.git",
-                "reference": "1a7f7c6a9c533a8e237b425bf6dd6c7bc8d6961a"
+                "reference": "54b26709b88ecf4d8e01f17afa361f3951c0523a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Kaida-by/multi-exception/zipball/1a7f7c6a9c533a8e237b425bf6dd6c7bc8d6961a",
-                "reference": "1a7f7c6a9c533a8e237b425bf6dd6c7bc8d6961a",
+                "url": "https://api.github.com/repos/Kaida-by/multi-exception/zipball/54b26709b88ecf4d8e01f17afa361f3951c0523a",
+                "reference": "54b26709b88ecf4d8e01f17afa361f3951c0523a",
                 "shasum": ""
             },
             "type": "library",
@@ -157,7 +157,7 @@
                 }
             ],
             "description": "Throws out a lot of exceptions",
-            "time": "2019-09-21T14:38:13+00:00"
+            "time": "2019-09-21T17:09:56+00:00"
         },
         {
             "name": "phpunit/php-timer",
