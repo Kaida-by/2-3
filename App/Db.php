@@ -35,6 +35,25 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
+    /**
+     * @param $sql
+     * @param array $data
+     * @param string $class
+     * @throws DbException
+     * @return \Generator
+     */
+    public function queryEach($sql, $data = [], $class = \stdClass::class)
+    {
+        $sth = $this->dbh->prepare($sql);
+        $result = $sth->execute($data);
+        if (!$result) {
+            throw new DbException('Неверный запрос к БД');
+        }
+        while ($article = $sth->fetch()) {
+            yield $article;
+        }
+    }
+
     public function execute($query, $params=[])
     {
         $sth = $this->dbh->prepare($query);

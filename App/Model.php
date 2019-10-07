@@ -58,14 +58,14 @@ abstract class Model
     }
 
     /**
-     * @return array
+     * @return \Generator
      * @throws Exceptions\DbException
      */
     public static function findAll()
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . static::TABLE;
-        return $db->query($sql, [], static::class);
+        return $db->queryEach($sql, [], static::class);
     }
 
     /**
@@ -76,14 +76,12 @@ abstract class Model
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
-        $result = $db->query($sql, [':id' => $id], static::class);
-        if ($result) {
-            return $result[0];
-        } else {
-            return false;
-        }
+        $result = $db->queryEach($sql, [':id' => $id], static::class);
+            foreach ($result as $value) {
+                return $value;
+            }
+        return false;
     }
-
 
     public function delete()
     {
