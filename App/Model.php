@@ -76,11 +76,12 @@ abstract class Model
     {
         $db = Db::getInstance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
-        $result = $db->queryEach($sql, [':id' => $id], static::class);
-            foreach ($result as $value) {
-                return $value;
-            }
-        return false;
+        $result = $db->query($sql, [':id' => $id], static::class);
+        if ($result) {
+            return $result[0];
+        } else {
+            return false;
+        }
     }
 
     public function delete()
