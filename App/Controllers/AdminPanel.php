@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\AdminDataTable;
 use App\Exceptions\E404Exception;
 use App\Models\Article;
 
@@ -14,7 +15,17 @@ class AdminPanel extends Admin
 
     protected function showAllNews()
     {
-        $this->view->articles = Article::findAll();
+        $functions =
+            [
+                'title' => function(Article $article) {
+                    return $article->title;
+                },
+                'trimmedText' => function(Article $article) {
+                    return substr($article->content, 0, 3);
+                }
+            ];
+        $adminDataTable = new AdminDataTable(Article::findAll(), $functions);
+        $this->view->table = $adminDataTable->render();
         $this->view->display(__DIR__ . '/../../template/index.php');
     }
 

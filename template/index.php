@@ -13,19 +13,7 @@
 <body>
 <h1>Новости</h1>
 <?php
-foreach ($this->articles as $article) :
-    echo '<h3>' . $article->title . '</h3>';
-    echo $article->content;
-    echo '<br>';
-    $author = $article->author;
-    if ($author) {
-        echo 'Автор: ' . $author->name;
-    } else {
-        echo 'Неизвестный автор';
-    }
-    echo '<br>';
-    echo '<hr>';
-endforeach;
+echo $this->table;
 ?>
 </body>
 </html>

@@ -49,6 +49,7 @@ class Db
         if (!$result) {
             throw new DbException('Неверный запрос к БД');
         }
+        $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
         while ($article = $sth->fetch()) {
             yield $article;
         }
