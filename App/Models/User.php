@@ -27,11 +27,10 @@ class User extends Model
 
     public static function functionsTable()
     {
-        return
-            [
-                'users' => function(User $model) {
-                    return $model->name;
-                }
-            ];
+        return [
+            'username' => function(User $model) {
+                return $model->name;
+            }
+        ];
     }
 }

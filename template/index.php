@@ -13,7 +13,7 @@
 <body>
 <h1>Новости</h1>
 <?php
-echo $this->tableArticle;
+echo $this->table;
 ?>
 <br>
 <a href="index.php?ctrl=AdminPanel&action=showAuthors">Авторы:</a>

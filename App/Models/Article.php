@@ -44,18 +44,17 @@ class Article extends Model
 
     public static function functionsTable()
     {
-        return
-            [
-                'title' => function(Article $model) {
-                    return $model->title;
-                },
-                'trimmedText' => function(Article $model) {
-                    return substr($model->content, 0, 3);
-                },
-                'authors_id' => function(Article $model) {
-                    return $model->author_id;
-                }
-            ];
+        return [
+            'title' => function(Article $model) {
+                return $model->title;
+            },
+            'trimmedText' => function(Article $model) {
+                return substr($model->content, 0, 3);
+            },
+            'authors_id' => function(Article $model) {
+                return $model->author_id;
+            }
+        ];
     }
 
     /**

@@ -10,7 +10,7 @@
 <body>
 <h1>Авторы</h1>
 <?php
-echo $this->tableAuthors;
+echo $this->table;
 ?>
 </body>
 </html>

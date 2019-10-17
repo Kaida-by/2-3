@@ -18,21 +18,21 @@ class AdminPanel extends Admin
     protected function showAllNews()
     {
         $adminDataTableArticle = new AdminDataTable(Article::findAll(), Article::functionsTable());
-        $this->view->tableArticle = $adminDataTableArticle->render();
+        $this->view->table = $adminDataTableArticle->render();
         $this->view->display(__DIR__ . '/../../template/index.php');
     }
 
     public function showAuthors()
     {
         $adminDataTableAuthors= new AdminDataTable(Author::findAll(), Author::functionsTable());
-        $this->view->tableAuthors = $adminDataTableAuthors->render();
+        $this->view->table = $adminDataTableAuthors->render();
         $this->view->display(__DIR__ . '/../../template/authors.php');
     }
 
     public function showUsers()
     {
         $adminDataTableUsers= new AdminDataTable(User::findAll(), User::functionsTable());
-        $this->view->tableUsers = $adminDataTableUsers->render();
+        $this->view->table = $adminDataTableUsers->render();
         $this->view->display(__DIR__ . '/../../template/users.php');
     }
 

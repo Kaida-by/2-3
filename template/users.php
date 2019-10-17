@@ -10,7 +10,7 @@
 <body>
 <h1>Пользователи</h1>
 <?php
-echo $this->tableUsers;
+echo $this->table;
 ?>
 </body>
 </html>
