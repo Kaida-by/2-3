@@ -4,13 +4,13 @@ namespace App;
 
 class AdminDataTable
 {
-    protected $articles = [];
+    protected $models = [];
 
     protected $functions = [];
 
-    public function __construct($articles, $functions)
+    public function __construct($models, $functions)
     {
-        $this->articles = $articles;
+        $this->models = $models;
         $this->functions = $functions;
     }
 
@@ -20,10 +20,10 @@ class AdminDataTable
         foreach ($this->functions as $key => $func) {
             $table .= '<th>' . $key . '</th>';
         }
-        foreach ($this->articles as $key2 => $article) {
+        foreach ($this->models as $key2 => $model) {
             $table .= '<tr><td>' . $key2 . '</td>';
             foreach ($this->functions as $func2) {
-                $table .= '<td>' . $func2($article) . '</td>';
+                $table .= '<td>' . $func2($model) . '</td>';
             }
             $table .= '</tr>';
         }

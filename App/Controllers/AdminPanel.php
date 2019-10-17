@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\AdminDataTable;
 use App\Exceptions\E404Exception;
 use App\Models\Article;
+use App\Models\Author;
+use App\Models\User;
 
 class AdminPanel extends Admin
 {
@@ -15,18 +17,23 @@ class AdminPanel extends Admin
 
     protected function showAllNews()
     {
-        $functions =
-            [
-                'title' => function(Article $article) {
-                    return $article->title;
-                },
-                'trimmedText' => function(Article $article) {
-                    return substr($article->content, 0, 3);
-                }
-            ];
-        $adminDataTable = new AdminDataTable(Article::findAll(), $functions);
-        $this->view->table = $adminDataTable->render();
+        $adminDataTableArticle = new AdminDataTable(Article::findAll(), Article::functionsTable());
+        $this->view->tableArticle = $adminDataTableArticle->render();
         $this->view->display(__DIR__ . '/../../template/index.php');
+    }
+
+    public function showAuthors()
+    {
+        $adminDataTableAuthors= new AdminDataTable(Author::findAll(), Author::functionsTable());
+        $this->view->tableAuthors = $adminDataTableAuthors->render();
+        $this->view->display(__DIR__ . '/../../template/authors.php');
+    }
+
+    public function showUsers()
+    {
+        $adminDataTableUsers= new AdminDataTable(User::findAll(), User::functionsTable());
+        $this->view->tableUsers = $adminDataTableUsers->render();
+        $this->view->display(__DIR__ . '/../../template/users.php');
     }
 
     /**

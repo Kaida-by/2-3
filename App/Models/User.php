@@ -24,4 +24,14 @@ class User extends Model
             return false;
         }
     }
+
+    public static function functionsTable()
+    {
+        return
+            [
+                'users' => function(User $model) {
+                    return $model->name;
+                }
+            ];
+    }
 }
